@@ -63,4 +63,24 @@ is.na(y)   #VALOR FALTANTE DETECTADO
 is.nan(y)  #TODO VALOR FALNTANTE ES NAN PERO NO TODO NA ES VALOR FALTANTE
 
 
+x <- data.frame(foo= 1:4, bar = c(T,T,F,F))
+x
+nrow(x)
+ncol(x)
 
+
+
+x <- 1:3
+names(x)
+names(x) <- c("sa", "uc" , "117")
+x
+names(x)
+
+x <- list(a = 1, b=2 , perro = 3)
+x
+
+
+m <- matrix(1:4, 2,2)
+m
+dimnames(m) <- list(c("a","b"),c("c","d"))
+m
