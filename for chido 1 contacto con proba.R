@@ -35,17 +35,17 @@ suma <- 0
   if(moneda==1){ #Caminata aleatoria
     z <- z + 0.5
   } else {
-    z <- z + 0.5
+    z <- z - 0.5
   }
 }
-x
-if(z<=3){ #Caminata aleatoria
+if(z <= 3 ){ #Caminata aleatoria
   gato <- gato + 1
 } else {
   ana <- ana + 1
 }
  perro <- perro +1
-}
+  }
+
 gato
 ana
 paste("En" , perro,"intentos, se escapa",gato,"por abajo y ", ana, "por arriba")
