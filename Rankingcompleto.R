@@ -97,6 +97,7 @@ rankingcomleto <- function(resultado,num = "mejor"){
         
         
         
+        
 #SUMA DE VECTORES        
     vector<-c(vector,perro)
     vectorEDOS<-c(vectorEDOS,estado)
