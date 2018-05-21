@@ -23,6 +23,14 @@ rankhospital <- function(estado, resultado,num="best" ){
     if(num != "best" & num < 0){
         stop("debe de ser mayor a 0 o best")
     }
+
+#
+    nt<-subset(lectura,lectura[,resultado]!="Not Available")
+    tmort<-as.numeric(as.character(nt[,resultado]))
+    tab<-data.frame(nt$Hospital.Name,nt$State,tmort)
+    tab1<-subset(tab,nt$State==estado)
+    
+    
 #
     if(num=="best" || num == 1){
     nt<-subset(lectura,lectura[,resultado]!="Not Available")
@@ -33,7 +41,7 @@ rankhospital <- function(estado, resultado,num="best" ){
     #
     estados <-subset(tab1,tmort ==mayor )
     x <- sort(estados[,1])
-    as.character(x[1])
+    resultado <- as.character(x[1])
     }
 #
     if(num=="peor"){
@@ -45,12 +53,37 @@ rankhospital <- function(estado, resultado,num="best" ){
         #
         estados <-subset(tab1,tmort ==menor )
         x <- sort(estados[,1])
-        as.character(x[1])
-    } 
+        resultado <- as.character(x[1])
+    } else{
+        if (nrow(tab1)<num) {
+            resultado<-NA
+        }else{
+            
+            #ordenamos las tasas de mortalidad de menor a mayor para extraer la tasa de la
+            #posición que elegimos
+            ordenados<-sort(as.numeric(as.vector(tab1[,3])))
+            x<-ordenados[[num]] 
+            
+            #Extraemos los estados cuya tasa de mortalidad es igual a la que ocupa x posición
+            #MANEJO DE EMPATES  
+            edos<-subset(tab1, tmort==x)
+            edosOrd<-as.character(as.vector(sort(edos[,1])))
+            
+            tab1[,3]<-as.numeric(as.vector(tab1[,3]))
+            
+            #Extraemos los estados cuya tasa de mortalidad es menor a la elegida y los contamos
+            x1<-subset(tab1, tmort<x)
+            nrow(x1)
+            
+            resta<-num-nrow(x1)
+            resultado<-edosOrd[[resta]]
+        }
+    }
 
-   
+#
+resultado
 }
-rankhospital("AL","ataque","peor")
+rankhospital("AL","ataque",102)
 
 
 nrow(lectura)
