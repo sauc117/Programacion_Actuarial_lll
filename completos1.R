@@ -4,7 +4,7 @@ directorio
 
 completos <- function(directorio, id = 1:332){
 valores <- c()
-    for (aca in id) {
+    for (aca in 2) {
         
         if(aca < 9){
             gato<-paste("00",aca,sep = "")
@@ -25,7 +25,7 @@ valores <- c()
     }
     data.frame(valores)
     }
-completos(directorio,1:5)
+completos(directorio, 3)
 
 
     

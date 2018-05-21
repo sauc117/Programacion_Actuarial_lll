@@ -32,15 +32,16 @@ mediacontaminante <- function(directorio , contaminante= "sulfate", id= 1:332){
         
     }
     y<-suma/valores
-    y
+    suma
 }
-mediacontaminante(directorio,"sulfate",1)
+mediacontaminante(directorio, "sulfate" ,1)
 
 
 
 valor <- c()
 for (perro in 1:20) {
-    valor <- c(perro, valor)
+    valo
+    r <- c(perro, valor)
 }
 mean(valor)
 

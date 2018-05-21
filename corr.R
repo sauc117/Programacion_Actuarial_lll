@@ -13,8 +13,11 @@ corr <- function(directorio,horizonte=0){
         gato<-formatC(i,width=3,flag="0")
         ana<-paste(gato,"csv",sep=".")
         
+       
         tab<-na.omit(read.csv(ana))
         val1<-nrow(tab)
+        
+        val1 <- completos(directorio,i)
         
         if(val1>horizonte){
             col2<-data.frame(tab[,2])
@@ -26,4 +29,6 @@ corr <- function(directorio,horizonte=0){
     res 
 }
 
-corr(directorio,0)
+corr(directorio,1)
+
+completos(directorio,1)
