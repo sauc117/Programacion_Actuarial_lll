@@ -8,7 +8,7 @@ resultado <- 11
 
 ###########################################333333
 
-rankingcomleto <- function(resultado,num = "mejor"){
+rankingcompleto <- function(resultado, num = "mejor"){
     
     lectura <- read.csv("outcome-of-care-measures.csv")
 
@@ -32,14 +32,14 @@ rankingcomleto <- function(resultado,num = "mejor"){
 ###    
     for (estado in estados){
         
+        nt<-subset(lectura,lectura[,resultado]!="Not Available")
+        tmort<-as.numeric(as.character(nt[,resultado]))
+        tab<-data.frame(nt$Hospital.Name,nt$State,tmort)
+        tab1<-subset(tab,nt$State==estado)
+        
     if(num == "mejor"){
     
-    nt<-subset(lectura,lectura[,resultado]!="Not Available")
-    tmort<-as.numeric(as.character(nt[,resultado]))
-#   
-    tab<-data.frame(nt$Hospital.Name,nt$State,tmort)
-# 
-    tab1<-subset(tab,nt$State==estado) 
+ 
 #    
     
     numero <- c()
@@ -58,10 +58,7 @@ rankingcomleto <- function(resultado,num = "mejor"){
     perro <- as.character(x[1])
     perro
     } else if ( num == "peor"){
-        nt<-subset(lectura,lectura[,resultado]!="Not Available")
-        tmort<-as.numeric(as.character(nt[,resultado]))
-        tab<-data.frame(nt$Hospital.Name,nt$State,tmort)
-        tab1<-subset(tab,nt$State==estado)
+
         #
         numero <- c()
         numero <- dim(tab1)
@@ -79,6 +76,7 @@ rankingcomleto <- function(resultado,num = "mejor"){
         perro <- as.character(x[1])
     }else{
         
+        num <- 20
         
         ordenados<-sort(as.numeric(as.vector(tab1[,3])))
         x<-ordenados[[num]] 
@@ -95,9 +93,6 @@ rankingcomleto <- function(resultado,num = "mejor"){
         perro<-edosOrd[[resta]]
     }
         
-        
-        
-        
 #SUMA DE VECTORES        
     vector<-c(vector,perro)
     vectorEDOS<-c(vectorEDOS,estado)
@@ -107,7 +102,7 @@ rankingcomleto <- function(resultado,num = "mejor"){
     FINAL
          
 }
-head(rankingcompleto("ataque",20))
+head(rankingcompleto("ataque","peor"))
 
 
 
